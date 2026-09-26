@@ -35,16 +35,14 @@ document.querySelectorAll("[data-placeholder-link]").forEach((link) => {
   });
 });
 
-document.querySelector("[data-cite-button]")?.addEventListener("click", async () => {
-  const citation =
-    "First Author, Second Author, Your Name, and Senior Author. A Formal Title for Your Survey Paper Goes Here. Journal / Conference / arXiv, 2026.";
+document.querySelectorAll("[data-citation]").forEach((button) => button.addEventListener("click", async () => {
   try {
-    await navigator.clipboard.writeText(citation);
-    showToast("Example citation copied.");
+    await navigator.clipboard.writeText(button.dataset.citation);
+    showToast("Citation copied.");
   } catch {
     showToast("Copy unavailable in this preview.");
   }
-});
+}));
 
 const pageSections = [...document.querySelectorAll("main section[id]")];
 const navLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
