@@ -35,6 +35,7 @@
   const papers = list(p.publications);
   const education = list(p.education);
   const experience = list(p.researchExperience);
+  const awards = list(p.awards);
   const social = [
     ["email", "Email", p.email ? "mailto:" + p.email : ""],
     ["scholar", "Google Scholar", p.links?.scholar],
@@ -168,6 +169,11 @@
     return row;
   }));
   hideSection("[data-experience]", !timeline.length);
+  const homepageAwards = awards.length
+    ? awards.map((award) => el("li", award))
+    : (p.templatePreview ? [el("li", "Add verified awards in profile.js when you have relevant entries.", "awards-placeholder")] : []);
+  set("[data-awards]", homepageAwards);
+  hideSection("[data-awards]", !homepageAwards.length);
   const cv = document.querySelector("[data-cv]");
   if (cv) {
     const contents = [];
@@ -214,7 +220,7 @@
       line.append(el("strong", skill.label + ": "), list(skill.items).join(", "));
       return line;
     }));
-    section("Awards & activities", list(p.awards).map((award) => el("p", award)));
+    section("Awards & activities", awards.map((award) => el("p", award)));
     if (p.lastUpdated) contents.push(el("p", "Last updated " + p.lastUpdated, "cv-updated"));
     cv.replaceChildren(...contents);
   }

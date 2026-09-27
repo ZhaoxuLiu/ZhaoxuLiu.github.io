@@ -36,7 +36,8 @@
 | publications | 论文记录，按希望展示的顺序填写 | 主页、CV、复制引用 |
 | education | 教育经历，最近的在前 | 主页、CV |
 | researchExperience | 科研经历 | CV；showOnHomepage: true 时也出现在主页 |
-| skills / awards | 技能与奖项，没有就写 [] | 仅 CV |
+| skills | 技能，没有就写 [] | 仅 CV |
+| awards | 获奖经历；没有就写 [] | 主页、CV |
 | lastUpdated | 更新月份，如 Oct 2026 | 两页 |
 | templatePreview | 真实资料填完后将 true 改为 false | 隐藏模板提示 |
 

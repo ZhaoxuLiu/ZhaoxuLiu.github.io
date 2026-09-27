@@ -342,11 +342,11 @@ button {
 }
 
 .lead {
-  max-width: 680px;
-  color: #334d62;
-  font-family: var(--serif);
-  font-size: 19px;
-  line-height: 1.55;
+  max-width: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .research-keywords {
@@ -578,6 +578,24 @@ button {
 .timeline-org {
   color: var(--navy) !important;
   font-weight: 600;
+}
+
+.awards-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.awards-list li {
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.awards-list .awards-placeholder {
+  color: #858585;
+  font-style: italic;
 }
 
 .about-contact {
