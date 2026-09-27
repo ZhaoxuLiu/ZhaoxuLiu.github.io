@@ -107,6 +107,12 @@
   const interests = research.length ? "My research interests include " + research.join(", ") + "." : "";
   if (interests || p.about?.focus) aboutCopy.append(el("p", join([interests, p.about?.focus], " ")));
   if (p.about?.background) aboutCopy.append(el("p", p.about.background));
+  if (p.email) {
+    const contactLine = el("p", "I am always glad to exchange ideas about research and potential collaboration. Contact me at ", "about-contact");
+    const emailLink = link(p.email, "mailto:" + p.email);
+    contactLine.append(emailLink, ".");
+    aboutCopy.append(contactLine);
+  }
   set("[data-about]", [lead, aboutCopy]);
   set("[data-research]", research.map((item) => el("li", item)));
   hideSection("[data-research]", !research.length);
@@ -162,13 +168,6 @@
     return row;
   }));
   hideSection("[data-experience]", !timeline.length);
-  const contact = document.querySelector("[data-contact-email]");
-  if (contact) {
-    contact.textContent = p.email || "";
-    contact.href = safeURL(p.email ? "mailto:" + p.email : "") || "#";
-    hideSection("[data-contact-email]", !p.email);
-  }
-
   const cv = document.querySelector("[data-cv]");
   if (cv) {
     const contents = [];
