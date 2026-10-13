@@ -7,11 +7,11 @@ window.ACADEMIC_PROFILE = {
   lastUpdated: "Sep 2026",
 
   name: "ZhaoxuLiu",
-  role: "Graduate Student · Researcher",
-  department: "Department / School",
-  institution: "University Name",
-  location: "City, Country",
-  email: "your.name@university.edu",
+  role: "Undergraduate Student · Researcher",
+  department: "School of Artificial Intelligence",
+  institution: "Jilin University",
+  location: "Changchun, China",
+  email: "zhaoxvliu@gmail.com",
   photo: "", // 先上传照片，例如 assets/portrait.jpg，再填这个路径。
 
   // 空字符串表示尚未填写；正式模式下会自动隐藏没有地址的链接。
@@ -25,10 +25,10 @@ window.ACADEMIC_PROFILE = {
 
   // 简介首句自动使用上面的身份、院系、学校；这里补充研究问题和背景。
   about: {
-    focus: "I am especially interested in questions around [one concrete research question].",
+    focus: "Currently,my research interests focus on self-evolving agent,recursive self-improvement, and skills",
     background: "Before this, I [brief education, laboratory, or project background]. Outside research, I enjoy [one or two genuine interests].",
   },
-  researchInterests: ["Trustworthy AI", "Language Models", "AI for Science"],
+  researchInterests: ["LLM-based Agent", "Self-evolving Agent", "Recursive Self-Improvement"],
 
   // 新闻只在主页展示，不会加入 CV。没有新闻时填写 []。
   news: [
