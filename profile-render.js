@@ -103,18 +103,34 @@
     portrait.removeAttribute("aria-label");
     portrait.replaceChildren(img);
   }
-  const lead = el("p", "I am currently a " + p.role + (p.department ? " in " + p.department : "") + (p.institution ? " at " + p.institution : "") + ".", "lead");
-  const aboutCopy = el("div");
-  const interests = research.length ? "My research interests include " + research.join(", ") + "." : "";
-  if (interests || p.about?.focus) aboutCopy.append(el("p", join([interests, p.about?.focus], " ")));
-  if (p.about?.background) aboutCopy.append(el("p", p.about.background));
-  if (p.email) {
-    const contactLine = el("p", "I am always glad to exchange ideas about research and potential collaboration. Contact me at ", "about-contact");
-    const emailLink = link(p.email, "mailto:" + p.email);
-    contactLine.append(emailLink, ".");
-    aboutCopy.append(contactLine);
+  // A single multiline string owns the entire About Me section.
+  // Keep old profile objects readable while their data is being migrated.
+  let aboutParagraphs;
+  if (typeof p.about === "string") {
+    aboutParagraphs = p.about.replace(/\r\n?/g, "\n").split(/\n\s*\n/)
+      .map((paragraph) => paragraph.trim().replace(/\s*\n\s*/g, " ")).filter(Boolean);
+  } else {
+    const interests = research.length ? "My research interests include " + research.join(", ") + "." : "";
+    aboutParagraphs = [
+      "I am currently a " + p.role + (p.department ? " in " + p.department : "") + (p.institution ? " at " + p.institution : "") + ".",
+      join([interests, p.about?.focus], " "),
+      p.about?.background,
+      p.email ? "I am always glad to exchange ideas about research and potential collaboration. Contact me at " + p.email + "." : "",
+    ].filter(Boolean);
   }
-  set("[data-about]", [lead, aboutCopy]);
+  set("[data-about]", aboutParagraphs.map((text) => {
+    const paragraph = el("p");
+    // Plain text stays plain text; only written email addresses become links.
+    const emailPattern = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi;
+    let cursor = 0;
+    for (const match of text.matchAll(emailPattern)) {
+      paragraph.append(text.slice(cursor, match.index), link(match[0], "mailto:" + match[0]));
+      cursor = match.index + match[0].length;
+    }
+    paragraph.append(text.slice(cursor));
+    return paragraph;
+  }));
+  hideSection("[data-about]", !aboutParagraphs.length);
   set("[data-research]", research.map((item) => el("li", item)));
   hideSection("[data-research]", !research.length);
   set("[data-news]", list(p.news).map((item) => {

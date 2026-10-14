@@ -1,5 +1,6 @@
 // 唯一的个人资料入口：修改这里，主页与在线 CV 会一起更新。
-// 只改引号内文字；多条记录用英文逗号分隔。详细说明见 README.md。
+// About Me：只改下方 about 的两端反引号之间的整段文字，空一行分段。
+// 其它字段：只改引号内文字；多条记录用英文逗号分隔。详细说明见 README.md。
 // 此文件会公开，请勿填写密码、身份证号、家庭住址等私密信息。
 window.ACADEMIC_PROFILE = {
   // 所有占位内容换成真实资料后改为 false，隐藏模板提示。
@@ -23,11 +24,21 @@ window.ACADEMIC_PROFILE = {
     x: "",
   },
 
-  // 简介首句自动使用上面的身份、院系、学校；这里补充研究问题和背景。
-  about: {
-    focus: "Currently,my research interests focus on self-evolving agent,recursive self-improvement, and skills",
-    background: "Before this, I [brief education, laboratory, or project background]. Outside research, I enjoy [one or two genuine interests].",
-  },
+  // ==================== About Me 整段编辑区 ====================
+  // 在两端反引号之间直接写完整介绍，可以粘贴多行文字，空一行分段。
+  // 这块文字完全由你控制；姓名、身份、学校、研究方向、邮箱不会自动拼接进来。
+  // 正文里写出的邮箱会自动变成可点击链接。不需要写 HTML。
+  about: `
+I am currently a Undergraduate Student · Researcher in School of Artificial Intelligence at Jilin University.
+
+My research interests include LLM-based Agent, Self-evolving Agent, Recursive Self-Improvement. Currently,my research interests focus on self-evolving agent,recursive self-improvement, and skills
+
+Before this, I [brief education, laboratory, or project background]. Outside research, I enjoy [one or two genuine interests].
+
+I am always glad to exchange ideas about research and potential collaboration. Contact me at zhaoxvliu@gmail.com.
+`,
+  // ==================== About Me 编辑区结束 ====================
+
   researchInterests: ["LLM-based Agent", "Self-evolving Agent", "Recursive Self-Improvement"],
 
   // 新闻只在主页展示，不会加入 CV。没有新闻时填写 []。

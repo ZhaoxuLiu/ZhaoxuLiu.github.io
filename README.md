@@ -20,18 +20,38 @@
 
 不要再分别修改 index.html / cv.html 里的个人资料，它们现在仅负责页面结构。
 
+## About Me 整段编辑
+
+在 profile.js 中找到“About Me 整段编辑区”。整个 About Me 只读取 `about` 这一块文字：
+
+```js
+about: `
+在这里填写你的第一段完整介绍。
+
+在这里填写第二段研究兴趣或个人背景。
+
+联系方式也直接写在这里，例如 name@example.com。
+`,
+```
+
+你可以一次粘贴完整介绍，自由增删和调整段落；空一行就会另起一段，同一段内的普通换行会合并成空格。正文中的邮箱会自动变成可点击的邮件链接。删除整段内容时，主页会隐藏 About Me 栏目。
+
+两端的反引号和最后的逗号请保留。这个编辑区可以直接写普通双引号，无需转义；若正文包含反引号，需在前面加反斜杠，若需要原样写 `${`，同样在美元符号前加反斜杠。
+
+About Me 现在完全由你写出的文字决定。修改侧栏的 role、department、institution、email 或 researchInterests，不会再自动添加或改写简介中的句子。侧栏、Research Interests 和 CV 仍使用各自原有的结构化资料；需要更新这些位置时，请修改对应字段。
+
 ## 字段说明
 
 | 字段 | 填什么 | 展示位置 |
 | --- | --- | --- |
 | name | 网站显示姓名，可使用中文 | 主页、CV、浏览器标题 |
-| role | 真实身份，例如 Master's Student | 主页、CV、简介首句 |
-| department / institution | 院系与学校全称 | 主页、CV、简介首句 |
+| role | 真实身份，例如 Master's Student | 主页侧栏、CV |
+| department / institution | 院系与学校全称 | 主页侧栏、CV |
 | location / email | 城市国家、愿意公开的邮箱 | 主页、CV |
 | photo | 上传后的照片路径，如 assets/portrait.jpg；可留空 | 主页 |
 | links | 各平台的完整 HTTPS 个人主页地址 | 主页、CV |
-| about.focus / about.background | 研究问题、个人背景简介 | 主页 |
-| researchInterests | 三个简洁研究关键词 | 主页、CV、简介研究方向句子 |
+| about | 一整块完整简介；用空行分段 | 主页 About Me |
+| researchInterests | 三个简洁研究关键词 | 主页 Research Interests、CV |
 | news | 日期与新闻，最近的在前 | 仅主页 |
 | publications | 论文记录，按希望展示的顺序填写 | 主页、CV、复制引用 |
 | education | 教育经历，最近的在前 | 主页、CV |
@@ -89,8 +109,8 @@ news: [],
 
 ## 常见问题
 
-- 只改引号中的文字，使用英文直引号，不用中文弯引号。
-- 文本中的双引号要写成反斜杠加引号：`\"`。不要在同一个字符串内直接换行。
+- 普通字段只改英文双引号中的文字，使用英文直引号，不用中文弯引号。
+- 普通字段中的双引号要写成反斜杠加引号：`\"`，不能直接在双引号字符串内换行。About Me 的反引号编辑区支持直接换行与普通双引号，填写方式见上文。
 - 不要漏掉记录之间的英文逗号。
 - 已安装 Node.js 时，可运行 `node --check profile.js` 检查语法。
 - 字段只接受纯文本，不要填 HTML 标签。
