@@ -5,7 +5,7 @@
 window.ACADEMIC_PROFILE = {
   // 所有占位内容换成真实资料后改为 false，隐藏模板提示。
   templatePreview: true,
-  lastUpdated: "Sep 2026",
+  lastUpdated: "Oct 2026",
 
   name: "ZhaoxuLiu",
   role: "Undergraduate Student · Researcher",
@@ -51,20 +51,51 @@ I am always glad to exchange ideas about research and potential collaboration. C
   // 论文顺序和作者顺序均按下面填写的顺序展示，不会自动调整。
   publications: [
     {
-      title: "A Formal Title for Your Survey Paper Goes Here",
+      title: "Graph Engineering in the Era of LLM Agents: From Individual Intelligence to System Intelligence",
       // 按论文实际顺序填写全部作者，人数不限；name 与论文署名完全一致。
       // 本人加 me: true；超过 6 人时主页自动精简，可展开全部，CV 和引用保留完整名单。
       authors: [
-        { name: "First Author" },
-        { name: "Second Author" },
-        { name: "Your Name", me: true },
-        { name: "Senior Author" },
+        { name: "Yuyuan Feng" },
+        { name: "Zhishang Xiang" },
+        { name: "Chaobin Yang" },
+        { name: "Qichao Ma" },
+        { name: "Zerui Chen" },
+        { name: "Yujing Zhang" },
+        { name: "Ke Huang" },
+        { name: "Chuanjie Wu" },
+        { name: "Zhaoxu Liu", me: true },
+        { name: "Yili Wang" },
+        { name: "Xin He" },
+        { name: "Jiapu Wang" },
+        { name: "Zijin Hong" },
+        { name: "Hao Chen" },
+        { name: "Yuanchen Bei" },
+        { name: "Kun Wang" },
+        { name: "Shengyuan Chen" },
+        { name: "Ningyu Zhang" },
+        { name: "Enyan Dai" },
+        { name: "Linhao Luo" },
+        { name: "Qingyi Pan" },
+        { name: "Qi Wang" },
+        { name: "Wenqi Fan" },
+        { name: "Guangjing Wang" },
+        { name: "Na Zou" },
+        { name: "Yangqiu Song" },
+        { name: "Xin Wang" },
+        { name: "Zechao Li" },
+        { name: "Xia Hu" },
+        { name: "Qing Li" },
+        { name: "Xiao Huang" },
+        { name: "Zhihong Zhang" },
+        { name: "Jinsong Su" },
+        { name: "Qinggang Zhang" },
+        { name: "Yi Chang" },
       ],
       year: "2026",
-      venue: "Journal / Conference / arXiv",
+      venue: "arXiv:2608.21156",
       image: "", // 可选：assets/paper-figure.png
-      paperUrl: "",
-      projectUrl: "",
+      paperUrl: "https://arxiv.org/abs/2608.21156",
+      projectUrl: "https://github.com/DEEP-JLU/Awesome-Graph-Engineering",
     },
   ],
 
