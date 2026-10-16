@@ -125,5 +125,5 @@ I am always glad to exchange ideas about research and potential collaboration. C
     { label: "Programming", items: ["Python", "[other languages]"] },
     { label: "Research", items: ["PyTorch", "LaTeX", "Git", "[other tools]"] },
   ],
-  awards: [""], // 例如 ["2026 · 奖项名称 · 颁发机构"]
+  awards: ["2026 · Finalist, MCM/ICM"], // 例如 ["2026 · 奖项名称 · 颁发机构"]
 };
