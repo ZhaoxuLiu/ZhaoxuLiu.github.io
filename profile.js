@@ -103,7 +103,6 @@ I am always glad to exchange ideas about research and potential collaboration. C
       title: "Degree Name, Major",
       organization: "Jilin University",
       location: "Changchun,China",
-      details: ["Advisor: Prof. Qinggang Zhang · Research group: DEEP Lab"],
     },
   ],
 
@@ -116,8 +115,7 @@ I am always glad to exchange ideas about research and potential collaboration. C
       organization: "DEEP Lab,Jilin University",
       location: "Changchun,China",
       showOnHomepage: true,
-      details: [
-        ],
+      details: ["Advisor: Prof. Qinggang Zhang · Research group: DEEP Lab"],
     },
   ],
 
