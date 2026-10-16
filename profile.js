@@ -7,7 +7,7 @@ window.ACADEMIC_PROFILE = {
   templatePreview: true,
   lastUpdated: "Oct 2026",
 
-  name: "ZhaoxuLiu",
+  name: "Zhaoxu Liu",
   role: "Undergraduate Student · Researcher",
   department: "School of Artificial Intelligence",
   institution: "Jilin University",
@@ -17,11 +17,11 @@ window.ACADEMIC_PROFILE = {
 
   // 空字符串表示尚未填写；正式模式下会自动隐藏没有地址的链接。
   links: {
-    scholar: "",
+    scholar: "https://scholar.google.com/citations?user=Ot1NMrsAAAAJ&hl=en&authuser=1",
     github: "https://github.com/ZhaoxuLiu",
-    orcid: "",
-    linkedin: "",
-    x: "",
+    orcid: "https://orcid.org/0009-0002-6983-2510",
+    linkedin: "https://www.linkedin.com/in/zhaoxv-liu-629556390/",
+    x: "https://x.com/zhaoxvliu",
   },
 
   // ==================== About Me 整段编辑区 ====================
@@ -116,7 +116,7 @@ I am always glad to exchange ideas about research and potential collaboration. C
       organization: "DEEP Lab,Jilin University",
       location: "Changchun,China",
       showOnHomepage: true,
-      details: ["Advisor: Prof. [Qinggang Zhang](https://qing145.github.io/) · Research group: DEEP Lab"],
+      details: ["Advisor: Prof. [Qinggang Zhang](https://qing145.github.io/)],
     },
   ],
 
