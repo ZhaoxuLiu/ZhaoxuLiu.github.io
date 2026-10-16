@@ -116,7 +116,7 @@ I am always glad to exchange ideas about research and potential collaboration. C
       organization: "DEEP Lab,Jilin University",
       location: "Changchun,China",
       showOnHomepage: true,
-      details: ["Advisor: Prof. [Qinggang Zhang](https://qing145.github.io/)],
+      details: ["Advisor: Prof. [Qinggang Zhang](https://qing145.github.io/)"],
     },
   ],
 
