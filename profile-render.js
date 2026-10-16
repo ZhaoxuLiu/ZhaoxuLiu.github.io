@@ -223,7 +223,35 @@
     row.append(el("div", item.period, "timeline-date"), copy);
     return row;
   }
-  set("[data-education]", education.map(timelineEntry));
+  function educationEntry(item) {
+    const row = el("article", null, "education-item");
+    if (safeURL(item.logo)) {
+      const logo = el("img", null, "education-logo");
+      logo.alt = (item.organization || "University") + " logo";
+      logo.width = 64;
+      logo.height = 64;
+      logo.loading = "lazy";
+      logo.decoding = "async";
+      logo.addEventListener("error", () => {
+        logo.remove();
+        row.classList.remove("has-logo");
+      }, { once: true });
+      logo.src = safeURL(item.logo);
+      row.classList.add("has-logo");
+      row.append(logo);
+    }
+    const copy = el("div", null, "education-copy");
+    const heading = el("div", null, "education-heading");
+    heading.append(el("h3", item.organization));
+    if (item.period) heading.append(el("span", item.period, "education-period"));
+    copy.append(heading);
+    if (item.title) copy.append(el("p", item.title, "education-degree"));
+    if (item.location) copy.append(el("p", item.location, "education-location"));
+    list(item.details).forEach((detail) => copy.append(detailNode("p", detail)));
+    row.append(copy);
+    return row;
+  }
+  set("[data-education]", education.map(educationEntry));
   hideSection("[data-education]", !education.length);
   const homepageExperience = experience.filter((item) => item.showOnHomepage);
   set("[data-experience]", homepageExperience.map(timelineEntry));
@@ -265,7 +293,7 @@
       return entry;
     }
     section("Research interests", research.length ? [el("p", research.join(", "))] : []);
-    section("Education", education.map(cvExperience));
+    section("Education", education.map(educationEntry));
     const cvPublications = el("div", null, "publication-list");
     cvPublications.append(...papers.map(publicationEntry));
     section(papers.length === 1 ? "Publication" : "Publications", papers.length ? [cvPublications] : []);

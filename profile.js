@@ -102,6 +102,7 @@ I am always glad to exchange ideas about research and potential collaboration. C
       period: "2024 — 2028(expected)",
       title: "B.Eng, Artificial Intelligence",
       organization: "Jilin University",
+      logo: "assets/jilin-university.gif", // 可选：校徽图片路径；留空则不显示校徽。
       location: "Changchun,China",
     },
   ],

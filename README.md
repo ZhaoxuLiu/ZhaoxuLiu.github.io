@@ -88,7 +88,25 @@ researchInterests: ["方向一", "方向二", "方向三"],
 
 ### 教育、科研经历与空栏目
 
-每条记录包含 period（时间）、title（学位/职位）、organization（机构）、location（地点）、details（补充说明列表）。CV 将 details 排成项目列表，主页使用简洁段落。
+每条记录包含 period（时间）、title（学位/职位）、organization（机构）、location（地点）、details（补充说明列表）。教育经历在主页和 CV 中共用排版；科研经历的 details 在 CV 中排成项目列表，在主页中使用简洁段落。
+
+教育记录可选填 logo（校徽图片路径），例如：
+
+```js
+education: [
+  {
+    period: "2024 — 2028(expected)",
+    title: "B.Eng, Artificial Intelligence",
+    organization: "Jilin University",
+    logo: "assets/jilin-university.gif",
+    location: "Changchun, China",
+  },
+],
+```
+
+校徽显示在学校信息左侧，主页与 CV 自动同步；手机端会把时间移到学校名称下方。新增学校时，上传对应图片后修改该条记录的 logo；留空或删除 logo 字段即可使用无校徽排版，不需要改 HTML。图片加载失败时会自动隐藏校徽并收回占位。
+
+吉林大学校徽来自[吉林大学官网的校徽页面](https://www.jlu.edu.cn/info/1010/7275.htm)，资源保存在 assets/jilin-university.gif，不依赖外部图片链接。
 
 details 中需要给导师姓名添加链接时，使用 `[姓名](完整网址)`，例如：
 

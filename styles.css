@@ -555,6 +555,68 @@ button {
   font-weight: 600;
 }
 
+.education-item {
+  padding: 20px 0;
+  break-inside: avoid;
+}
+
+.education-item.has-logo {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: center;
+  gap: 22px;
+}
+
+.education-logo {
+  display: block;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.education-logo[src="assets/jilin-university.gif"] {
+  /* Exclude the official GIF's outer rectangular frame, not the seal. */
+  clip-path: circle(47%);
+}
+
+.education-copy {
+  min-width: 0;
+}
+
+.education-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 20px;
+}
+
+.education-heading h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.education-period {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.education-copy p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.education-copy .education-degree {
+  color: var(--text);
+}
+
+.education-copy .education-location {
+  font-size: 12px;
+}
+
 .awards-list {
   margin: 0;
   padding: 0;
@@ -760,6 +822,26 @@ button {
   .timeline-item {
     grid-template-columns: 1fr;
     gap: 4px;
+  }
+
+  .education-item.has-logo {
+    grid-template-columns: 56px minmax(0, 1fr);
+    align-items: start;
+    gap: 16px;
+  }
+
+  .education-logo {
+    width: 56px;
+    height: 56px;
+  }
+
+  .education-heading {
+    display: block;
+  }
+
+  .education-period {
+    display: block;
+    margin-top: 2px;
   }
 
   .publication-card {
