@@ -20,7 +20,7 @@
 .portrait-placeholder.has-photo::after { display: none; }
 .portrait-placeholder img { width: 100%; height: 100%; object-fit: cover; }
 .publication-visual img { width: 100%; height: auto; object-fit: contain; }
-[data-publications] { display: grid; gap: 22px; }
+[data-publications], .publication-list { display: grid; gap: 28px; }
 .cv-contacts { display: flex; flex-wrap: wrap; gap: 5px 16px; }
 .cv-contacts a, .about-contact a { overflow-wrap: anywhere; }
 .cv-updated { margin-top: 32px; font-size: 11px; }
@@ -398,8 +398,8 @@ button {
   display: grid;
   grid-template-columns: 190px minmax(0, 1fr);
   gap: 27px;
-  padding: 20px;
-  border: 1px solid var(--line);
+  padding: 0;
+  border: 0;
   background: #fff;
 }
 
@@ -643,7 +643,7 @@ button {
   font-size: 21px;
 }
 
-.cv-sheet p,
+.cv-sheet p:not(.authors):not(.venue),
 .cv-sheet li {
   color: var(--muted);
 }
@@ -769,7 +769,7 @@ button {
 
   .publication-card {
     grid-template-columns: 1fr;
-    padding: 14px;
+    padding: 0;
   }
 
   .publication-visual {
@@ -790,7 +790,8 @@ button {
   .site-header,
   .site-footer,
   .toast,
-  .cv-actions {
+  .cv-actions,
+  [data-citation] {
     display: none !important;
   }
 
@@ -805,7 +806,7 @@ button {
   }
 
   .cv-sheet h2 { break-after: avoid; }
-  .cv-entry { break-inside: avoid; }
+  .cv-entry, .publication-card { break-inside: avoid; }
 
   .author-disclosure { display: none; }
   .author-print { display: block; }

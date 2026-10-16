@@ -57,7 +57,7 @@
     });
     return fragment;
   }
-  function homepageAuthors(paper) {
+  function publicationAuthors(paper) {
     const allAuthors = list(paper.authors);
     const previewIndexes = allAuthors.map((_, index) => index)
       .filter((index) => index < 3 || allAuthors[index].me || index === allAuthors.length - 1);
@@ -78,8 +78,8 @@
       el("span", "Show fewer authors", "author-hide"));
     summary.append(preview, toggle);
     details.append(summary, fullLine());
-    const printLine = fullLine();
-    printLine.classList.add("author-print");
+    const printLine = el("p", null, "authors author-print");
+    printLine.append(authors(paper, previewIndexes));
     container.append(details, printLine);
     return container;
   }
@@ -101,6 +101,25 @@
       container.append(button);
     }
     return container;
+  }
+  function publicationEntry(paper) {
+    const entry = el("article", null, "publication-card");
+    if (safeURL(paper.image)) {
+      const figure = el("div", null, "publication-visual");
+      const img = el("img");
+      img.src = safeURL(paper.image);
+      img.alt = "Overview figure: " + paper.title;
+      img.loading = "lazy";
+      figure.append(img);
+      entry.append(figure);
+    } else {
+      entry.classList.add("publication-card-text");
+    }
+    const copy = el("div", null, "publication-copy");
+    copy.append(el("h3", paper.title), publicationAuthors(paper), el("p", venue(paper), "venue"));
+    copy.append(paperLinks(paper, true));
+    entry.append(copy);
+    return entry;
   }
   function hideSection(selector, empty) {
     const section = document.querySelector(selector)?.closest("section");
@@ -178,25 +197,7 @@
     return row;
   }));
   hideSection("[data-news]", !list(p.news).length);
-  set("[data-publications]", papers.map((paper) => {
-    const card = el("article", null, "publication-card");
-    if (safeURL(paper.image)) {
-      const figure = el("div", null, "publication-visual");
-      const img = el("img");
-      img.src = safeURL(paper.image);
-      img.alt = "Overview figure: " + paper.title;
-      img.loading = "lazy";
-      figure.append(img);
-      card.append(figure);
-    } else {
-      card.classList.add("publication-card-text");
-    }
-    const copy = el("div", null, "publication-copy");
-    copy.append(el("h3", paper.title), homepageAuthors(paper), el("p", venue(paper), "venue"));
-    copy.append(paperLinks(paper, true));
-    card.append(copy);
-    return card;
-  }));
+  set("[data-publications]", papers.map(publicationEntry));
   hideSection("[data-publications]", !papers.length);
   const publicationHeading = document.querySelector("#publications h2");
   if (publicationHeading) publicationHeading.textContent = papers.length === 1 ? "Publication" : "Publications";
@@ -248,13 +249,9 @@
     }
     section("Research interests", research.length ? [el("p", research.join(", "))] : []);
     section("Education", education.map(cvExperience));
-    section(papers.length === 1 ? "Publication" : "Publications", papers.map((paper) => {
-      const entry = el("div", null, "cv-entry");
-      const line = el("p");
-      line.append(authors(paper), ". “" + paper.title + ".” " + venue(paper) + ".");
-      entry.append(line, paperLinks(paper));
-      return entry;
-    }));
+    const cvPublications = el("div", null, "publication-list");
+    cvPublications.append(...papers.map(publicationEntry));
+    section(papers.length === 1 ? "Publication" : "Publications", papers.length ? [cvPublications] : []);
     section("Research experience", experience.map(cvExperience));
     section("Skills", list(p.skills).map((skill) => {
       const line = el("p");

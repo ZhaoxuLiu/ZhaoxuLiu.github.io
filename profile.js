@@ -53,7 +53,7 @@ I am always glad to exchange ideas about research and potential collaboration. C
     {
       title: "Graph Engineering in the Era of LLM Agents: From Individual Intelligence to System Intelligence",
       // 按论文实际顺序填写全部作者，人数不限；name 与论文署名完全一致。
-      // 本人加 me: true；超过 6 人时主页自动精简，可展开全部，CV 和引用保留完整名单。
+      // 本人加 me: true；超过 6 人时主页和 CV 默认精简，可展开全部；复制引用保留完整名单。
       authors: [
         { name: "Yuyuan Feng" },
         { name: "Zhishang Xiang" },
