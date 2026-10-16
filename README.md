@@ -54,8 +54,8 @@ About Me 现在完全由你写出的文字决定。修改侧栏的 role、depart
 | researchInterests | 三个简洁研究关键词 | 主页 Research Interests、CV |
 | news | 日期与新闻，最近的在前 | 仅主页 |
 | publications | 论文记录，按希望展示的顺序填写 | 主页、CV、复制引用 |
-| education | 教育经历，最近的在前 | 主页、CV |
-| researchExperience | 科研经历 | CV；showOnHomepage: true 时也出现在主页 |
+| education | 学校、学位、专业和就读时间，最近的在前 | 主页与 CV 的 Education |
+| researchExperience | 科研、实习或工作经历 | CV 的 Experience；showOnHomepage: true 时也出现在主页 Experience |
 | skills | 技能，没有就写 [] | 仅 CV |
 | awards | 获奖经历；没有就写 [] | 主页、CV |
 | lastUpdated | 更新月份，如 Oct 2026 | 两页 |
@@ -91,6 +91,8 @@ researchInterests: ["方向一", "方向二", "方向三"],
 每条记录包含 period（时间）、title（学位/职位）、organization（机构）、location（地点）、details（补充说明列表）。CV 将 details 排成项目列表，主页使用简洁段落。
 
 科研经历默认仅显示在 CV；需要在主页也显示时改成 showOnHomepage: true。
+
+Education 与 Experience 是两个独立栏目，均按各自列表的填写顺序展示。教育记录只放在 education 中；科研、实习或工作记录放在 researchExperience 中，不会再混入教育栏目。主页顺序为 Education、Experience、Awards；对应列表为空时，该栏目与导航入口会自动隐藏。
 
 没有内容时使用空列表，标题也会自动隐藏：
 

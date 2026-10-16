@@ -201,16 +201,19 @@
   hideSection("[data-publications]", !papers.length);
   const publicationHeading = document.querySelector("#publications h2");
   if (publicationHeading) publicationHeading.textContent = papers.length === 1 ? "Publication" : "Publications";
-  const timeline = [...education, ...experience.filter((item) => item.showOnHomepage)];
-  set("[data-experience]", timeline.map((item) => {
+  function timelineEntry(item) {
     const row = el("article", null, "timeline-item");
     const copy = el("div");
     copy.append(el("h3", item.title), el("p", join([item.organization, item.location]), "timeline-org"));
     list(item.details).forEach((detail) => copy.append(el("p", detail)));
     row.append(el("div", item.period, "timeline-date"), copy);
     return row;
-  }));
-  hideSection("[data-experience]", !timeline.length);
+  }
+  set("[data-education]", education.map(timelineEntry));
+  hideSection("[data-education]", !education.length);
+  const homepageExperience = experience.filter((item) => item.showOnHomepage);
+  set("[data-experience]", homepageExperience.map(timelineEntry));
+  hideSection("[data-experience]", !homepageExperience.length);
   const homepageAwards = awards.length
     ? awards.map((award) => el("li", award))
     : (p.templatePreview ? [el("li", "Add verified awards in profile.js when you have relevant entries.", "awards-placeholder")] : []);
@@ -252,7 +255,7 @@
     const cvPublications = el("div", null, "publication-list");
     cvPublications.append(...papers.map(publicationEntry));
     section(papers.length === 1 ? "Publication" : "Publications", papers.length ? [cvPublications] : []);
-    section("Research experience", experience.map(cvExperience));
+    section("Experience", experience.map(cvExperience));
     section("Skills", list(p.skills).map((skill) => {
       const line = el("p");
       line.append(el("strong", skill.label + ": "), list(skill.items).join(", "));
