@@ -31,6 +31,20 @@
     if (node.getAttribute("href") === "#") node.dataset.placeholderLink = "";
     return node;
   };
+  // Details accept [label](https://...) links, never raw HTML.
+  const detailNode = (tag, value) => {
+    const node = el(tag);
+    const text = String(value ?? "");
+    const pattern = /\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g;
+    let cursor = 0;
+    for (const match of text.matchAll(pattern)) {
+      node.append(text.slice(cursor, match.index));
+      node.append(safeURL(match[2]) ? link(match[1], match[2]) : match[0]);
+      cursor = match.index + match[0].length;
+    }
+    node.append(text.slice(cursor));
+    return node;
+  };
   const research = list(p.researchInterests);
   const papers = list(p.publications);
   const education = list(p.education);
@@ -205,7 +219,7 @@
     const row = el("article", null, "timeline-item");
     const copy = el("div");
     copy.append(el("h3", item.title), el("p", join([item.organization, item.location]), "timeline-org"));
-    list(item.details).forEach((detail) => copy.append(el("p", detail)));
+    list(item.details).forEach((detail) => copy.append(detailNode("p", detail)));
     row.append(el("div", item.period, "timeline-date"), copy);
     return row;
   }
@@ -245,7 +259,7 @@
       entry.append(heading);
       if (list(item.details).length) {
         const bullets = el("ul");
-        list(item.details).forEach((detail) => bullets.append(el("li", detail)));
+        list(item.details).forEach((detail) => bullets.append(detailNode("li", detail)));
         entry.append(bullets);
       }
       return entry;

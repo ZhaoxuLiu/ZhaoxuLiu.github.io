@@ -90,6 +90,14 @@ researchInterests: ["方向一", "方向二", "方向三"],
 
 每条记录包含 period（时间）、title（学位/职位）、organization（机构）、location（地点）、details（补充说明列表）。CV 将 details 排成项目列表，主页使用简洁段落。
 
+details 中需要给导师姓名添加链接时，使用 `[姓名](完整网址)`，例如：
+
+```js
+details: ["Advisor: Prof. [Qinggang Zhang](https://qing145.github.io/) · Research group: DEEP Lab"],
+```
+
+主页和 CV 会同步显示可点击的姓名。只支持这种简单的 HTTP/HTTPS 链接写法，不需要填写 HTML；其他文字保持原样。
+
 科研经历默认仅显示在 CV；需要在主页也显示时改成 showOnHomepage: true。
 
 Education 与 Experience 是两个独立栏目，均按各自列表的填写顺序展示。教育记录只放在 education 中；科研、实习或工作记录放在 researchExperience 中，不会再混入教育栏目。主页顺序为 Education、Experience、Awards；对应列表为空时，该栏目与导航入口会自动隐藏。
@@ -116,7 +124,7 @@ news: [],
 - 普通字段中的双引号要写成反斜杠加引号：`\"`，不能直接在双引号字符串内换行。About Me 的反引号编辑区支持直接换行与普通双引号，填写方式见上文。
 - 不要漏掉记录之间的英文逗号。
 - 已安装 Node.js 时，可运行 `node --check profile.js` 检查语法。
-- 字段只接受纯文本，不要填 HTML 标签。
+- 字段不要填 HTML 标签；details 除普通文字外支持上文的 `[姓名](https://...)` 链接写法。
 - 链接用完整 https:// 地址；照片路径须与已上传文件一致，注意大小写。
 - 页面空白或提示 Profile could not be loaded 时，检查 profile.js 的引号、括号、逗号。
 - GitHub 文件 History 可查看旧版本，误改后可以恢复内容。
