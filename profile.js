@@ -31,9 +31,7 @@ window.ACADEMIC_PROFILE = {
   about: `
 I am currently a Undergraduate Student · Researcher in School of Artificial Intelligence at Jilin University.
 
-My research interests include LLM-based Agent, Self-evolving Agent, Recursive Self-Improvement. Currently,my research interests focus on self-evolving agent,recursive self-improvement, and skills
-
-Before this, I [brief education, laboratory, or project background]. Outside research, I enjoy [one or two genuine interests].
+Currently,my research interests focus on self-evolving agent,recursive self-improvement, and skills
 
 I am always glad to exchange ideas about research and potential collaboration. Contact me at zhaoxvliu@gmail.com.
 `,
@@ -43,9 +41,8 @@ I am always glad to exchange ideas about research and potential collaboration. C
 
   // 新闻只在主页展示，不会加入 CV。没有新闻时填写 []。
   news: [
-    { date: "2026-09", text: "Our survey on [research topic] is now available online." },
-    { date: "2026-06", text: "Started working on [current project or research direction]." },
-    { date: "2025-09", text: "Joined [laboratory / research group] at [university]." },
+    { date: "2026-08", text: "Our survey on graph engineering is now available online." },
+    { date: "2026-05", text: "We are awarded Finalist at MCM/ICM." },
   ],
 
   // 论文顺序和作者顺序均按下面填写的顺序展示，不会自动调整。
@@ -102,18 +99,11 @@ I am always glad to exchange ideas about research and potential collaboration. C
   // 教育经历同步到主页和 CV。请按最近的经历在前排序。
   education: [
     {
-      period: "2024 — Present",
+      period: "2024 — 2028(expected)",
       title: "Degree Name, Major",
-      organization: "University Name",
-      location: "City, Country",
-      details: ["Advisor: Prof. [Name] · Research group: [Laboratory]"],
-    },
-    {
-      period: "2020 — 2024",
-      title: "Previous Degree, Major",
-      organization: "University Name",
-      location: "City, Country",
-      details: ["Selected coursework, thesis, distinction, or research experience."],
+      organization: "Jilin University",
+      location: "Changchun,China",
+      details: ["Advisor: Prof. Qinggang Zhang · Research group: DEEP Lab"],
     },
   ],
 
@@ -121,15 +111,13 @@ I am always glad to exchange ideas about research and potential collaboration. C
   // 没有科研经历请填写 []，整个标题也会隐藏。
   researchExperience: [
     {
-      period: "2025 — Present",
+      period: "2026 — Present",
       title: "Research Assistant",
-      organization: "Research Group / Laboratory",
-      location: "",
-      showOnHomepage: false,
+      organization: "DEEP Lab,Jilin University",
+      location: "Changchun,China",
+      showOnHomepage: true,
       details: [
-        "Describe a concrete research task, method, or contribution.",
-        "Describe a technical result, dataset, system, or collaboration.",
-      ],
+        ],
     },
   ],
 
