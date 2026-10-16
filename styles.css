@@ -21,13 +21,7 @@
 .portrait-placeholder img { width: 100%; height: 100%; object-fit: cover; }
 .publication-visual img { width: 100%; height: auto; object-fit: contain; }
 [data-publications], .publication-list { display: grid; gap: 28px; }
-.cv-contacts { display: flex; flex-wrap: wrap; gap: 5px 16px; }
 .cv-contacts a, .about-contact a { overflow-wrap: anywhere; }
-.cv-updated { margin-top: 32px; font-size: 11px; }
-.cv-entry { margin-bottom: 18px; }
-.cv-entry p { margin-bottom: 6px; }
-.cv-entry ul { margin-top: 6px; }
-.cv-entry .publication-links { margin-top: 6px; }
 
 html {
   scroll-behavior: smooth;
@@ -672,37 +666,155 @@ button {
 }
 
 .cv-page {
-  width: min(800px, calc(100% - 40px));
-  margin: 45px auto;
+  width: min(860px, calc(100% - 40px));
+  margin: 32px auto;
 }
 
 .cv-sheet {
-  padding: 55px 65px;
-  border: 1px solid var(--line);
+  padding: 38px 44px;
   background: #fff;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  line-height: 1.4;
 }
 
 .cv-sheet h1,
 .cv-sheet h2 {
-  font-family: var(--serif);
-  font-weight: 500;
+  font-family: inherit;
 }
 
 .cv-sheet h1 {
   margin: 0;
-  font-size: 42px;
+  font-size: 36px;
+  font-weight: 500;
+  font-variant: small-caps;
+  line-height: 1.15;
+  letter-spacing: 0.025em;
 }
 
 .cv-sheet h2 {
-  margin: 30px 0 10px;
-  padding-top: 15px;
-  color: var(--navy);
-  font-size: 21px;
+  margin: 24px 0 10px;
+  padding: 0;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 600;
+  font-variant: small-caps;
 }
 
-.cv-sheet p:not(.authors):not(.venue),
-.cv-sheet li {
+.cv-header {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.cv-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px 8px;
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.cv-contact-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.cv-contact-separator {
   color: var(--muted);
+}
+
+.cv-section > p {
+  margin: 0;
+}
+
+.cv-section > p + p {
+  margin-top: 6px;
+}
+
+.cv-sheet .education-item {
+  padding: 6px 0;
+}
+
+.cv-sheet .education-item.has-logo {
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 14px;
+}
+
+.cv-sheet .education-logo {
+  width: 52px;
+  height: 52px;
+}
+
+.cv-sheet .education-heading h3 {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cv-sheet .education-copy p {
+  margin-top: 3px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.cv-sheet .education-degree {
+  font-style: italic;
+}
+
+.cv-sheet .education-location {
+  color: var(--muted) !important;
+}
+
+.cv-sheet .education-period,
+.cv-entry-period {
+  color: var(--text);
+  font-size: 13px;
+}
+
+.cv-entry {
+  margin: 0 0 14px;
+}
+
+.cv-entry-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 3px 18px;
+}
+
+.cv-entry p {
+  margin: 3px 0 0;
+  font-size: 14px;
+}
+
+.cv-entry-affiliation {
+  font-style: italic;
+}
+
+.cv-sheet .publication-card h3 {
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.cv-sheet .publication-authors,
+.cv-sheet .authors,
+.cv-sheet .venue {
+  margin-top: 6px;
+}
+
+.cv-sheet .author-preview {
+  margin-top: 0;
+}
+
+.cv-sheet .publication-links {
+  margin-top: 9px;
 }
 
 .cv-topline {
@@ -859,8 +971,30 @@ button {
   }
 
   .cv-sheet {
-    padding: 35px 25px;
+    padding: 24px 0;
   }
+
+  .cv-contacts {
+    column-gap: 12px;
+  }
+
+  .cv-contact-separator {
+    display: none;
+  }
+
+  .cv-entry-heading {
+    display: block;
+  }
+
+  .cv-entry-period {
+    display: block;
+    margin-top: 2px;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 16mm 17mm;
 }
 
 @media print {
@@ -882,6 +1016,17 @@ button {
     border: 0;
   }
 
+  .cv-header { margin-bottom: 22px; }
+  .cv-sheet h1 { font-size: 27pt; }
+  .cv-sheet h2 { margin-top: 20px; }
+  .cv-contacts { flex-wrap: nowrap; gap: 0 7px; font-size: 9pt; }
+  .cv-contact-item { gap: 7px; }
+  .cv-contact-separator { display: inline; }
+  .cv-sheet .education-heading { display: flex; }
+  .cv-sheet .education-period { display: inline; margin-top: 0; }
+  .cv-entry-heading { display: flex; }
+  .cv-entry-period { display: inline; margin-top: 0; }
+  .cv-sheet p { orphans: 2; widows: 2; }
   .cv-sheet h2 { break-after: avoid; }
   .cv-entry, .publication-card { break-inside: avoid; }
 

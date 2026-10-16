@@ -13,6 +13,7 @@ window.ACADEMIC_PROFILE = {
   institution: "Jilin University",
   location: "Changchun, China",
   email: "zhaoxvliu@gmail.com",
+  homepage: "https://zhaoxuliu.github.io/", // CV 顶部的个人主页链接。
   photo: "", // 先上传照片，例如 assets/portrait.jpg，再填这个路径。
 
   // 空字符串表示尚未填写；正式模式下会自动隐藏没有地址的链接。
@@ -121,9 +122,6 @@ I am always glad to exchange ideas about research and potential collaboration. C
   ],
 
   // 以下仅用于 CV；没有内容时填写 []，不必为了填满页面编造经历。
-  skills: [
-    { label: "Programming", items: ["Python", "[other languages]"] },
-    { label: "Research", items: ["PyTorch", "LaTeX", "Git", "[other tools]"] },
-  ],
+  skills: [], // 已清空模板技能；以后只填写希望在 CV 中展示的真实技能。
   awards: ["2026 · Finalist, MCM/ICM"], // 例如 ["2026 · 奖项名称 · 颁发机构"]
 };

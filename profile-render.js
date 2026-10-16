@@ -145,7 +145,7 @@
 
   document.title = p.name + (document.querySelector("[data-cv]") ? " · CV" : " · Academic Homepage");
   document.querySelector('meta[name="description"]')?.setAttribute("content",
-    join([p.name, p.role, p.institution, research.join(", ")]) + (p.templatePreview ? " — Template preview." : ""));
+    join([p.name, p.role, p.institution, research.join(", ")]) + (p.templatePreview && !document.querySelector("[data-cv]") ? " — Template preview." : ""));
   document.querySelectorAll("[data-profile]").forEach((node) => {
     node.textContent = p[node.dataset.profile] || "";
   });
@@ -264,15 +264,31 @@
   const cv = document.querySelector("[data-cv]");
   if (cv) {
     const contents = [];
-    if (p.templatePreview) contents.push(el("p", "Template preview · Personal details and entries below are placeholders.", "preview-note"));
-    contents.push(el("p", "Curriculum vitae", "eyebrow"), el("h1", p.name),
-      el("p", join([p.role, p.department, p.institution])));
+    const cvText = (value) => String(value ?? "")
+      .replace(/[\u2010-\u2015\u2212]/g, "-")
+      .replace(/,\s*/g, ", ")
+      .replace(/\s*\(expected\)/gi, " (Expected)");
+    const header = el("header", null, "cv-header");
+    header.append(el("h1", p.name));
     const contacts = el("p", null, "cv-contacts");
-    if (p.location) contacts.append(el("span", p.location));
+    const contactLinks = [];
+    if (p.email) contactLinks.push(link(p.email, "mailto:" + p.email));
+    if (safeURL(p.homepage)) contactLinks.push(link("Homepage", p.homepage));
     social.forEach(([key, label, url]) => {
-      if (safeURL(url)) contacts.append(link(key === "email" ? p.email : label, url));
+      if (key !== "email" && safeURL(url)) contactLinks.push(link(label, url));
     });
-    contents.push(contacts);
+    contactLinks.forEach((anchor, index) => {
+      const item = el("span", null, "cv-contact-item");
+      if (index) {
+        const separator = el("span", "|", "cv-contact-separator");
+        separator.setAttribute("aria-hidden", "true");
+        item.append(separator);
+      }
+      item.append(anchor);
+      contacts.append(item);
+    });
+    if (contactLinks.length) header.append(contacts);
+    contents.push(header);
     function section(title, nodes) {
       if (!nodes.length) return;
       const block = el("section", null, "cv-section");
@@ -281,19 +297,23 @@
     }
     function cvExperience(item) {
       const entry = el("div", null, "cv-entry");
-      const heading = el("p");
-      heading.append(el("strong", item.organization),
-        " — " + join([item.title, item.location]) + (item.period ? " (" + item.period + ")" : ""));
+      const heading = el("div", null, "cv-entry-heading");
+      heading.append(el("strong", cvText(item.title)));
+      if (item.period) heading.append(el("span", cvText(item.period), "cv-entry-period"));
       entry.append(heading);
-      if (list(item.details).length) {
-        const bullets = el("ul");
-        list(item.details).forEach((detail) => bullets.append(detailNode("li", detail)));
-        entry.append(bullets);
-      }
+      const affiliation = join([cvText(item.organization), cvText(item.location)]);
+      if (affiliation) entry.append(el("p", affiliation, "cv-entry-affiliation"));
+      list(item.details).forEach((detail) => entry.append(detailNode("p", detail)));
       return entry;
     }
+    section("Education", education.map((item) => educationEntry({
+      ...item,
+      organization: cvText(item.organization),
+      title: cvText(item.title),
+      location: cvText(item.location),
+      period: cvText(item.period),
+    })));
     section("Research interests", research.length ? [el("p", research.join(", "))] : []);
-    section("Education", education.map(educationEntry));
     const cvPublications = el("div", null, "publication-list");
     cvPublications.append(...papers.map(publicationEntry));
     section(papers.length === 1 ? "Publication" : "Publications", papers.length ? [cvPublications] : []);
@@ -303,8 +323,7 @@
       line.append(el("strong", skill.label + ": "), list(skill.items).join(", "));
       return line;
     }));
-    section("Awards & activities", awards.map((award) => el("p", award)));
-    if (p.lastUpdated) contents.push(el("p", "Last updated " + p.lastUpdated, "cv-updated"));
+    section("Awards", awards.map((award) => el("p", award)));
     cv.replaceChildren(...contents);
   }
 })();
