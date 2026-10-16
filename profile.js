@@ -17,7 +17,7 @@ window.ACADEMIC_PROFILE = {
 
   // 空字符串表示尚未填写；正式模式下会自动隐藏没有地址的链接。
   links: {
-    scholar: "https://scholar.google.com/citations?user=Ot1NMrsAAAAJ&hl=en&authuser=1",
+    scholar: "https://scholar.google.com/citations?user=Ot1NMrsAAAAJ",
     github: "https://github.com/ZhaoxuLiu",
     orcid: "https://orcid.org/0009-0002-6983-2510",
     linkedin: "https://www.linkedin.com/in/zhaoxv-liu-629556390/",
@@ -125,5 +125,5 @@ I am always glad to exchange ideas about research and potential collaboration. C
     { label: "Programming", items: ["Python", "[other languages]"] },
     { label: "Research", items: ["PyTorch", "LaTeX", "Git", "[other tools]"] },
   ],
-  awards: [], // 例如 ["2026 · 奖项名称 · 颁发机构"]
+  awards: [""], // 例如 ["2026 · 奖项名称 · 颁发机构"]
 };
