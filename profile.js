@@ -100,7 +100,7 @@ I am always glad to exchange ideas about research and potential collaboration. C
   education: [
     {
       period: "2024 — 2028(expected)",
-      title: "Degree Name, Major",
+      title: "B.Eng, Artificial Intelligence",
       organization: "Jilin University",
       location: "Changchun,China",
     },
