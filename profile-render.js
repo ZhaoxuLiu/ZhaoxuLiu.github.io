@@ -44,15 +44,46 @@
     ["linkedin", "LinkedIn", p.links?.linkedin],
     ["x", "X", p.links?.x],
   ];
-  function authors(paper) {
+  function authors(paper, selectedIndexes) {
     const fragment = document.createDocumentFragment();
-    list(paper.authors).forEach((author, index) => {
-      if (index) fragment.append(", ");
-      fragment.append(el(author.me ? "strong" : "span", author.name));
+    const allAuthors = list(paper.authors);
+    const indexes = selectedIndexes || allAuthors.map((_, index) => index);
+    indexes.forEach((index, position) => {
+      if (position) fragment.append(index > indexes[position - 1] + 1 ? ", …, " : ", ");
+      const author = allAuthors[index];
+      const name = el(author.me ? "strong" : "span", author.name);
+      if (author.me && selectedIndexes) name.title = "Author " + (index + 1) + " of " + allAuthors.length;
+      fragment.append(name);
     });
     return fragment;
   }
-  const venue = (paper) => join([paper.venue, paper.year, paper.status], ", ");
+  function homepageAuthors(paper) {
+    const allAuthors = list(paper.authors);
+    const previewIndexes = allAuthors.map((_, index) => index)
+      .filter((index) => index < 3 || allAuthors[index].me || index === allAuthors.length - 1);
+    const fullLine = () => {
+      const line = el("p", null, "authors");
+      line.append(authors(paper));
+      return line;
+    };
+    if (allAuthors.length <= 6 || previewIndexes.length === allAuthors.length) return fullLine();
+
+    const container = el("div", null, "publication-authors");
+    const details = el("details", null, "author-disclosure");
+    const summary = el("summary");
+    const preview = el("span", null, "authors author-preview");
+    preview.append(authors(paper, previewIndexes));
+    const toggle = el("span", null, "author-toggle");
+    toggle.append(el("span", "Show all " + allAuthors.length + " authors", "author-show"),
+      el("span", "Show fewer authors", "author-hide"));
+    summary.append(preview, toggle);
+    details.append(summary, fullLine());
+    const printLine = fullLine();
+    printLine.classList.add("author-print");
+    container.append(details, printLine);
+    return container;
+  }
+  const venue = (paper) => join([paper.venue, paper.year], ", ");
   const citation = (paper) => join([
     list(paper.authors).map((a) => a.name).join(", "),
     paper.title,
@@ -149,27 +180,21 @@
   hideSection("[data-news]", !list(p.news).length);
   set("[data-publications]", papers.map((paper) => {
     const card = el("article", null, "publication-card");
-    const figure = el("div", null, "publication-visual");
     if (safeURL(paper.image)) {
+      const figure = el("div", null, "publication-visual");
       const img = el("img");
       img.src = safeURL(paper.image);
       img.alt = "Overview figure: " + paper.title;
       img.loading = "lazy";
       figure.append(img);
+      card.append(figure);
     } else {
-      figure.append(el("span", paper.type, "visual-label"),
-        el("div", null, "visual-orbit orbit-one"), el("div", null, "visual-orbit orbit-two"),
-        el("div", "↗", "visual-core"), el("span", "Publication", "visual-caption"));
+      card.classList.add("publication-card-text");
     }
     const copy = el("div", null, "publication-copy");
-    const meta = el("div", null, "publication-meta");
-    [paper.type, paper.year].filter(Boolean).forEach((value) => meta.append(el("span", value)));
-    const authorLine = el("p", null, "authors");
-    authorLine.append(authors(paper));
-    copy.append(meta, el("h3", paper.title), authorLine, el("p", venue(paper), "venue"));
-    if (paper.summary) copy.append(el("p", paper.summary, "publication-summary"));
+    copy.append(el("h3", paper.title), homepageAuthors(paper), el("p", venue(paper), "venue"));
     copy.append(paperLinks(paper, true));
-    card.append(figure, copy);
+    card.append(copy);
     return card;
   }));
   hideSection("[data-publications]", !papers.length);

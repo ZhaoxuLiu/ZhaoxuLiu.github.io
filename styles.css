@@ -403,6 +403,10 @@ button {
   background: #fff;
 }
 
+.publication-card.publication-card-text {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .publication-visual {
   position: relative;
   display: grid;
@@ -414,74 +418,8 @@ button {
   color: #64717b;
 }
 
-.visual-label,
-.visual-caption {
-  position: absolute;
-  z-index: 2;
-  font-size: 8px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.visual-label {
-  top: 13px;
-  left: 14px;
-}
-
-.visual-caption {
-  right: 14px;
-  bottom: 11px;
-}
-
-.visual-core {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  width: 52px;
-  height: 52px;
-  place-items: center;
-  border: 1px solid #aab1b6;
-  border-radius: 50%;
-  font-family: var(--serif);
-  font-size: 17px;
-}
-
-.visual-orbit {
-  position: absolute;
-  border: 1px solid #c5cacd;
-  border-radius: 50%;
-}
-
-.orbit-one {
-  width: 145px;
-  height: 72px;
-  transform: rotate(25deg);
-}
-
-.orbit-two {
-  width: 83px;
-  height: 175px;
-  transform: rotate(40deg);
-}
-
 .publication-copy {
   align-self: center;
-}
-
-.publication-meta {
-  display: flex;
-  gap: 7px;
-  margin-bottom: 11px;
-}
-
-.publication-meta span {
-  padding: 2px 7px;
-  border: 1px solid #d3bdc2;
-  color: var(--accent);
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
 }
 
 .publication-card h3 {
@@ -493,15 +431,14 @@ button {
 }
 
 .authors,
-.venue,
-.publication-summary {
+.venue {
   margin: 11px 0 0;
 }
 
-.authors,
-.publication-summary {
+.authors {
   color: var(--muted);
   font-size: 12px;
+  overflow-wrap: anywhere;
 }
 
 .authors strong {
@@ -509,6 +446,54 @@ button {
   text-decoration: underline;
   text-decoration-color: #b9808e;
   text-underline-offset: 2px;
+}
+
+.publication-authors {
+  margin-top: 11px;
+}
+
+.author-disclosure summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+}
+
+.author-disclosure summary::-webkit-details-marker {
+  display: none;
+}
+
+.author-disclosure summary:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 4px;
+}
+
+.author-disclosure .author-preview {
+  display: block;
+  margin: 0;
+}
+
+.author-toggle {
+  display: inline-block;
+  padding: 4px 0;
+  color: var(--navy);
+  font-size: 11px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.author-disclosure[open] .author-preview,
+.author-disclosure[open] .author-show,
+.author-hide,
+.author-print {
+  display: none;
+}
+
+.author-disclosure[open] .author-hide {
+  display: inline;
+}
+
+.author-disclosure > .authors {
+  margin-top: 4px;
 }
 
 .venue {
@@ -535,13 +520,6 @@ button {
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-}
-
-.publication-note {
-  margin: 12px 0 0;
-  color: #858585;
-  font-size: 10px;
-  text-align: right;
 }
 
 .timeline {
@@ -828,4 +806,7 @@ button {
 
   .cv-sheet h2 { break-after: avoid; }
   .cv-entry { break-inside: avoid; }
+
+  .author-disclosure { display: none; }
+  .author-print { display: block; }
 }

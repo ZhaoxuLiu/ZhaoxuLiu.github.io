@@ -52,18 +52,16 @@ I am always glad to exchange ideas about research and potential collaboration. C
   publications: [
     {
       title: "A Formal Title for Your Survey Paper Goes Here",
-      // name 应与论文上的署名完全一致；me: true 只负责加粗本人署名。
+      // 按论文实际顺序填写全部作者，人数不限；name 与论文署名完全一致。
+      // 本人加 me: true；超过 6 人时主页自动精简，可展开全部，CV 和引用保留完整名单。
       authors: [
         { name: "First Author" },
         { name: "Second Author" },
         { name: "Your Name", me: true },
         { name: "Senior Author" },
       ],
-      type: "Survey",
       year: "2026",
       venue: "Journal / Conference / arXiv",
-      status: "", // 如 Preprint / Accepted；不要把未发表的论文写成已发表。
-      summary: "One concise sentence describing the scope, taxonomy, or primary contribution of the survey. Keep it factual and easy to scan.",
       image: "", // 可选：assets/paper-figure.png
       paperUrl: "",
       projectUrl: "",
