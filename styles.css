@@ -318,11 +318,24 @@ button {
 }
 
 .section-heading h2 {
+  position: relative;
   margin: 0;
+  padding-left: 13px;
   font-family: var(--serif);
   font-size: 29px;
   font-weight: 500;
   line-height: 1.2;
+}
+
+.section-heading h2::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 3px;
+  height: 0.8em;
+  background: var(--accent);
+  content: "";
+  transform: translateY(-50%);
 }
 
 .prose-grid {
